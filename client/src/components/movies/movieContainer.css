@@ -3,3 +3,16 @@
   flex-wrap: wrap;
   margin: 20px;
 }
+
+.ui.card {
+  margin: 15px;
+  width: 10%;
+}
+
+.ui.card:last-child {
+  margin: 15px;
+}
+
+.ui.card:first-child {
+  margin-top: 15px;
+}
