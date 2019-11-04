@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieCard from './movieCard';
+import SearchBar from '../search/searchBar';
 import './movieContainer.css';
 
 const moviess = [
@@ -346,10 +347,15 @@ const moviess = [
 
 function MovieContainer() {
   return (
-    <div className="movie-container">
-      {moviess.map(mov => (
-        <MovieCard movie={mov}></MovieCard>
-      ))}
+    <div>
+      <div className="search-bar">
+        <SearchBar> </SearchBar>
+      </div>
+      <div className="movie-container">
+        {moviess.map(mov => (
+          <MovieCard movie={mov}></MovieCard>
+        ))}
+      </div>
     </div>
   );
 }
