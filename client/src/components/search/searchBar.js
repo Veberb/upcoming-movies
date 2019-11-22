@@ -9,9 +9,9 @@ function SearchBar({ movie }) {
   return (
     <div className="ui segment">
       <form onSubmit={onFormSubmit} className="ui form">
-        <div class="ui icon input ">
+        <div className="ui icon input ">
           <input type="text" className="search-input" placeholder="Search..." />
-          <i class="circular search link icon"></i>
+          <i className="circular search link icon"></i>
         </div>
       </form>
     </div>

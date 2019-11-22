@@ -349,11 +349,11 @@ function MovieContainer() {
   return (
     <div>
       <div className="search-bar">
-        <SearchBar> </SearchBar>
+        <SearchBar />
       </div>
       <div className="movie-container">
-        {moviess.map(mov => (
-          <MovieCard movie={mov}></MovieCard>
+        {moviess.map((mov, index) => (
+          <MovieCard movie={mov} key={index}></MovieCard>
         ))}
       </div>
     </div>
