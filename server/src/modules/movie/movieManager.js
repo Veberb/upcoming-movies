@@ -4,7 +4,6 @@ const { tmdb } = require('../../config');
 const movieInstance = axios.create({
   baseURL: tmdb.url,
 });
-const a = {};
 
 exports.list = async ({ page = 1 }) => {
   const res = await movieInstance.get('/movie/upcoming', {
