@@ -14,8 +14,6 @@ function MovieContainer() {
     const { data } = await axios.get('movies', { params: { page: page.current } });
     setMovies(old => [...old, ...data.results]);
     hasMoreToLoad.current = data.page === data.total_pages;
-    console.log(data.page !== data.total_pages);
-    console.log(data);
   };
 
   const loadMoreMovies = async pagination => {
@@ -38,8 +36,8 @@ function MovieContainer() {
         hasMore={hasMoreToLoad.current}
         loadMore={loadMoreMovies}
         loader={
-          <div className="loader" key={0}>
-            Loading ...
+          <div className="ui active inverted dimmer">
+            <div className="ui large text loader">Loading</div>
           </div>
         }
       >
