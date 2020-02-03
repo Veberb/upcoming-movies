@@ -14,11 +14,15 @@ function MovieContainer() {
   const getList = async () => {
     if (isFetching.current) return;
     isFetching.current = true;
-    console.log(page.current);
     const { data } = await axios.get('movies', { params: { page: page.current } });
     isFetching.current = false;
     setMovies(old => [...old, ...data.results]);
-    hasMoreToLoad.current = data.page === data.total_pages;
+
+    hasMoreToLoad.current = data.page !== data.total_pages;
+  };
+
+  const onSearchTitle = title => {
+    console.log(title);
   };
 
   const loadMoreMovies = async pagination => {
@@ -26,25 +30,16 @@ function MovieContainer() {
     getList();
   };
 
-  useEffect(() => {
-    getList();
-  }, []);
-
   return (
     <div>
       <div className="search-bar">
-        <SearchBar />
+        <SearchBar onChangeTitle={onSearchTitle} />
       </div>
       <InfiniteScroll
         pageStart={0}
         hasMore={hasMoreToLoad.current}
         loadMore={loadMoreMovies}
-        threshold={100}
-        loader={
-          <div className="ui active inverted dimmer">
-            <div className="ui large text loader">Loading</div>
-          </div>
-        }
+        threshold={50}
       >
         <div className="movie-container">
           {movies.map((mov, index) => (
