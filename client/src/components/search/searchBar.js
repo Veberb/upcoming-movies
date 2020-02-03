@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './searchBar.css';
+import useDebounce from '../../hooks/debounce';
 
-const onFormSubmit = () => {
-  console.log('oi');
-};
+function SearchBar({ onChangeTitle }) {
+  const [title, setTitle] = useState('');
 
-function SearchBar({ movie }) {
+  const debouncedSearchTitle = useDebounce(title, 2500);
+
+  useEffect(() => {
+    if (debouncedSearchTitle) onChangeTitle(title);
+  }, [debouncedSearchTitle]);
+
   return (
     <div className="ui segment">
-      <form onSubmit={onFormSubmit} className="ui form">
-        <div className="ui icon input ">
-          <input type="text" className="search-input" placeholder="Search..." />
-          <i className="circular search link icon"></i>
-        </div>
-      </form>
+      <div className="ui icon input ">
+        <input
+          type="text"
+          className="search-input"
+          onChange={event => {
+            setTitle(event.target.value);
+          }}
+          placeholder="Search..."
+        />
+        <i className="circular search link icon"></i>
+      </div>
     </div>
   );
 }
